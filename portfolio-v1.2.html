@@ -1,0 +1,1380 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <title>Aditya Raj – AI-powered software engineer</title>
+    <meta name="description"
+        content="Aditya Raj builds reliable full-stack and AI products: RAG assistants, booking systems and data tools.">
+    <style>
+        :root {
+            --bg: #161412;
+            --surface: #201d1a;
+            --line: #36312c;
+            --text: #f3eee7;
+            --muted: #b3aa9e;
+            --accent: #ffb21f;
+            --on-accent: #1a1200;
+            color-scheme: dark;
+            box-sizing: border-box;
+            padding-top: env(safe-area-inset-top, 0px);
+            padding-bottom: env(safe-area-inset-bottom, 0px)
+        }
+
+        @media (prefers-color-scheme:light) {
+            :root:not([data-theme="dark"]) {
+                --bg: #faf6ef;
+                --surface: #fff;
+                --line: #ddd3c4;
+                --text: #1d1a16;
+                --muted: #5e564b;
+                --accent: #b36b00;
+                --on-accent: #fff;
+                color-scheme: light
+            }
+        }
+
+        :root[data-theme="light"] {
+            --bg: #faf6ef;
+            --surface: #fff;
+            --line: #ddd3c4;
+            --text: #1d1a16;
+            --muted: #5e564b;
+            --accent: #b36b00;
+            --on-accent: #fff;
+            color-scheme: light
+        }
+
+        *,
+        *::before,
+        *::after {
+            box-sizing: inherit
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 72px
+        }
+
+        body {
+            margin: 0;
+            background: var(--bg);
+            color: var(--text);
+            font: 1.0625rem/1.65 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif
+        }
+
+        h1,
+        h2,
+        h3 {
+            font-family: "Helvetica Neue", Arial, system-ui, sans-serif;
+            line-height: 1.08;
+            letter-spacing: -.03em;
+            margin: 0
+        }
+
+        h1 {
+            font-size: clamp(2.5rem, 8vw, 5.25rem);
+            font-weight: 800
+        }
+
+        .hero-name {
+            font-size: clamp(3.2rem, 11vw, 7.5rem);
+            font-weight: 900;
+            line-height: 1;
+            letter-spacing: -.05em;
+            margin: 0 0 .5rem;
+            display: block;
+            font-family: "Helvetica Neue", Arial, system-ui, sans-serif
+        }
+
+        h2 {
+            font-size: clamp(1.9rem, 4.5vw, 3rem);
+            font-weight: 800;
+            margin-bottom: 1.5rem
+        }
+
+        h3 {
+            font-size: 1.35rem;
+            font-weight: 700;
+            letter-spacing: -.02em
+        }
+
+        p {
+            margin: 0 0 1rem;
+            max-width: 62ch
+        }
+
+        a {
+            color: inherit
+        }
+
+        :focus-visible {
+            outline: 3px solid var(--accent);
+            outline-offset: 3px;
+            border-radius: 4px
+        }
+
+        .skip {
+            position: absolute;
+            left: -999px;
+            top: 8px;
+            background: var(--accent);
+            color: var(--on-accent);
+            padding: .6rem 1rem;
+            z-index: 100;
+            border-radius: 6px
+        }
+
+        .skip:focus {
+            left: 8px
+        }
+
+        .wrap {
+            width: min(1100px, 100% - 2.5rem);
+            margin-inline: auto
+        }
+
+        header.bar {
+            position: sticky;
+            top: env(safe-area-inset-top, 0px);
+            z-index: 20;
+            background: color-mix(in srgb, var(--bg) 90%, transparent);
+            backdrop-filter: blur(8px);
+            border-bottom: 1px solid var(--line)
+        }
+
+        header.bar .wrap {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            min-height: 60px;
+            gap: 1rem
+        }
+
+        .logo {
+            font-weight: 800;
+            text-decoration: none;
+            letter-spacing: -.02em
+        }
+
+        nav ul {
+            display: flex;
+            gap: 1.25rem;
+            list-style: none;
+            margin: 0;
+            padding: 0
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--muted);
+            font-size: .95rem;
+            padding: .5rem 0;
+            display: inline-block
+        }
+
+        nav a:hover {
+            color: var(--text)
+        }
+
+        section {
+            padding: clamp(3.5rem, 9vw, 6.5rem) 0
+        }
+
+        .hero {
+            padding-top: clamp(3rem, 8vw, 6rem)
+        }
+
+        .pill {
+            display: inline-flex;
+            align-items: center;
+            gap: .55rem;
+            border: 1px solid var(--line);
+            border-radius: 99px;
+            padding: .3rem .9rem;
+            font-size: .9rem;
+            color: var(--muted);
+            margin-bottom: 1.75rem
+        }
+
+        .pill i {
+            width: .55rem;
+            height: .55rem;
+            border-radius: 50%;
+            background: var(--accent)
+        }
+
+        .hero h1 em {
+            font-style: normal;
+            color: var(--accent)
+        }
+
+        .lead {
+            font-size: 1.2rem;
+            color: var(--muted);
+            margin: 1.75rem 0 2rem
+        }
+
+        .actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: .85rem;
+            align-items: center
+        }
+
+        .btn {
+            display: inline-block;
+            font: inherit;
+            font-weight: 700;
+            text-decoration: none;
+            border-radius: 8px;
+            padding: .85rem 1.4rem;
+            border: 2px solid var(--accent);
+            cursor: pointer;
+            min-height: 44px
+        }
+
+        .btn.primary {
+            background: var(--accent);
+            color: var(--on-accent)
+        }
+
+        .btn.ghost {
+            background: transparent;
+            color: var(--text);
+            border-color: var(--line)
+        }
+
+        .btn:hover {
+            filter: brightness(1.08)
+        }
+
+        .links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.25rem;
+            list-style: none;
+            padding: 0;
+            margin: 2rem 0 0
+        }
+
+        .links a {
+            color: var(--muted);
+            text-underline-offset: 4px
+        }
+
+        .links a:hover {
+            color: var(--accent)
+        }
+
+        .demo {
+            margin-top: 3rem;
+            border: 1px solid var(--line);
+            border-left: 4px solid var(--accent);
+            background: var(--surface);
+            border-radius: 8px;
+            padding: 1.1rem 1.25rem;
+            max-width: 560px
+        }
+
+        .demo p {
+            margin: 0 0 .5rem;
+            font-size: .98rem
+        }
+
+        .demo .q {
+            color: var(--muted)
+        }
+
+        .demo .a {
+            font-weight: 600
+        }
+
+        .demo small {
+            color: var(--muted)
+        }
+
+        .grid {
+            display: grid;
+            gap: 1.25rem;
+            grid-template-columns: 1fr
+        }
+
+        .card {
+            background: var(--surface);
+            border: 1px solid var(--line);
+            border-radius: 10px;
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: .75rem
+        }
+
+        .card .role {
+            color: var(--muted);
+            font-size: .95rem;
+            margin: 0
+        }
+
+        .card .metric {
+            font-weight: 700;
+            color: var(--accent);
+            margin: .25rem 0 0
+        }
+
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: .4rem;
+            list-style: none;
+            margin: 0;
+            padding: 0
+        }
+
+        .tags li {
+            border: 1px solid var(--line);
+            border-radius: 6px;
+            padding: .15rem .6rem;
+            font-size: .85rem;
+            color: var(--muted)
+        }
+
+        .card .btn {
+            margin-top: auto;
+            align-self: flex-start
+        }
+
+        .split {
+            display: grid;
+            gap: 2.5rem;
+            grid-template-columns: 1fr
+        }
+
+        .skills dt {
+            font-weight: 700;
+            margin-top: 1.1rem
+        }
+
+        .skills dd {
+            margin: .5rem 0 0
+        }
+
+        ul.plain {
+            padding-left: 1.1rem;
+            margin: 0 0 1rem
+        }
+
+        ul.plain li {
+            margin-bottom: .6rem;
+            max-width: 62ch
+        }
+
+        .contact {
+            border-top: 1px solid var(--line)
+        }
+
+        form {
+            display: grid;
+            gap: 1rem;
+            max-width: 560px
+        }
+
+        label {
+            display: grid;
+            gap: .35rem;
+            font-weight: 600;
+            font-size: .95rem
+        }
+
+        input,
+        textarea {
+            font: inherit;
+            color: var(--text);
+            background: var(--surface);
+            border: 1px solid var(--line);
+            border-radius: 8px;
+            padding: .75rem .9rem;
+            width: 100%
+        }
+
+        textarea {
+            min-height: 130px;
+            resize: vertical
+        }
+
+        .note {
+            color: var(--muted);
+            font-size: .9rem
+        }
+
+        footer {
+            border-top: 1px solid var(--line);
+            padding: 1.5rem 0;
+            color: var(--muted);
+            font-size: .9rem
+        }
+
+        dialog {
+            width: min(720px, 100% - 2rem);
+            max-height: 88vh;
+            overflow: auto;
+            background: var(--surface);
+            color: var(--text);
+            border: 1px solid var(--line);
+            border-radius: 12px;
+            padding: 1.75rem
+        }
+
+        dialog::backdrop {
+            background: rgba(0, 0, 0, .65)
+        }
+
+        dialog h4 {
+            margin: 1.4rem 0 .35rem;
+            font-size: 1rem
+        }
+
+        dialog p,
+        dialog li {
+            max-width: none
+        }
+
+        .close {
+            float: right;
+            background: none;
+            border: 1px solid var(--line);
+            color: var(--text);
+            border-radius: 8px;
+            min-width: 44px;
+            min-height: 44px;
+            font: inherit;
+            cursor: pointer
+        }
+
+        .progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: var(--accent);
+            transform-origin: 0 50%;
+            transform: scaleX(0);
+            z-index: 50
+        }
+
+        .hero {
+            position: relative;
+            overflow: hidden;
+            isolation: isolate
+        }
+
+        .gridbg {
+            position: absolute;
+            inset: 0;
+            z-index: -1;
+            background-image: linear-gradient(var(--line) 1px, transparent 1px), linear-gradient(90deg, var(--line) 1px, transparent 1px);
+            background-size: 56px 56px;
+            opacity: .4;
+            -webkit-mask-image: radial-gradient(ellipse 70% 60% at 30% 30%, #000, transparent 75%);
+            mask-image: radial-gradient(ellipse 70% 60% at 30% 30%, #000, transparent 75%);
+            animation: drift 20s linear infinite
+        }
+
+        @keyframes drift {
+            to {
+                background-position: 56px 56px
+            }
+        }
+
+        @keyframes rise {
+            from {
+                opacity: 0;
+                transform: translateY(22px)
+            }
+        }
+
+        .hero .wrap>* {
+            animation: rise .8s cubic-bezier(.2, .7, .2, 1) both
+        }
+
+        .hero .wrap>:nth-child(2) {
+            animation-delay: .1s
+        }
+
+        .hero .wrap>:nth-child(3) {
+            animation-delay: .2s
+        }
+
+        .hero .wrap>:nth-child(4) {
+            animation-delay: .3s
+        }
+
+        .hero .wrap>:nth-child(5) {
+            animation-delay: .4s
+        }
+
+        .hero .wrap>:nth-child(6) {
+            animation-delay: .5s
+        }
+
+        .pill i {
+            animation: pulse 2s ease-out infinite
+        }
+
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 color-mix(in srgb, var(--accent) 65%, transparent)
+            }
+
+            100% {
+                box-shadow: 0 0 0 10px transparent
+            }
+        }
+
+        .hero h1 em {
+            background: linear-gradient(90deg, var(--accent), var(--text), var(--accent));
+            background-size: 200% 100%;
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: sheen 6s ease-in-out infinite
+        }
+
+        @keyframes sheen {
+            50% {
+                background-position: 100% 0
+            }
+        }
+
+        /* ── Name heading animations ── */
+        .hero-name {
+            animation: nameRise 1s cubic-bezier(.2, .7, .2, 1) both, glowPulse 3s ease-in-out 1.2s infinite
+        }
+
+        @keyframes nameRise {
+            from {
+                opacity: 0;
+                transform: translateY(32px) scale(.96) skewX(-3deg)
+            }
+        }
+
+        @keyframes glowPulse {
+
+            0%,
+            100% {
+                text-shadow: 0 0 0px transparent
+            }
+
+            50% {
+                text-shadow: 0 0 28px color-mix(in srgb, var(--accent) 55%, transparent), 0 0 60px color-mix(in srgb, var(--accent) 20%, transparent)
+            }
+        }
+
+        .hero-name .char {
+            display: inline-block;
+            animation: charDrop .6s cubic-bezier(.2, .85, .3, 1) both
+        }
+
+        @keyframes charDrop {
+            from {
+                opacity: 0;
+                transform: translateY(-24px) rotateX(60deg)
+            }
+        }
+
+        /* Glitch on hover */
+        .hero-name:hover {
+            animation: glitch .4s steps(2) 0s 2, glowPulse 3s ease-in-out infinite
+        }
+
+        @keyframes glitch {
+            0% {
+                text-shadow: 2px 0 var(--accent), -2px 0 #0ff;
+                transform: translate(0)
+            }
+
+            20% {
+                text-shadow: -3px 0 var(--accent), 3px 0 #0ff;
+                transform: translate(-2px, 1px)
+            }
+
+            40% {
+                text-shadow: 3px 0 var(--accent), -3px 0 #0ff;
+                transform: translate(2px, -1px)
+            }
+
+            60% {
+                text-shadow: -2px 0 var(--accent), 2px 0 #0ff;
+                transform: translate(1px, 0)
+            }
+
+            80% {
+                text-shadow: 2px 2px var(--accent), -2px -2px #0ff;
+                transform: translate(0, 1px)
+            }
+
+            100% {
+                text-shadow: none;
+                transform: translate(0)
+            }
+        }
+
+        .demo .q,
+        .demo .a {
+            min-height: 1.65em
+        }
+
+        .typing::after {
+            content: "";
+            display: inline-block;
+            width: .55em;
+            height: 1.05em;
+            margin-left: 2px;
+            background: var(--accent);
+            vertical-align: -.15em;
+            animation: blink 1s steps(1) infinite
+        }
+
+        @keyframes blink {
+            50% {
+                opacity: 0
+            }
+        }
+
+        .btn {
+            transition: transform .2s, box-shadow .2s, filter .2s, border-color .2s
+        }
+
+        .btn.primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 26px -10px var(--accent)
+        }
+
+        .btn.ghost:hover {
+            border-color: var(--accent)
+        }
+
+        .card {
+            position: relative;
+            overflow: hidden;
+            transition: transform .3s, border-color .3s
+        }
+
+        .card>* {
+            position: relative
+        }
+
+        .card::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(320px circle at var(--mx, 50%) var(--my, 50%), color-mix(in srgb, var(--accent) 18%, transparent), transparent 70%);
+            opacity: 0;
+            transition: opacity .3s;
+            pointer-events: none
+        }
+
+        .card:hover {
+            border-color: var(--accent)
+        }
+
+        .card:hover::before {
+            opacity: 1
+        }
+
+        .tags li {
+            transition: color .2s, border-color .2s
+        }
+
+        .tags li:hover {
+            color: var(--text);
+            border-color: var(--accent)
+        }
+
+        nav a {
+            box-shadow: 0 2px 0 transparent;
+            transition: color .2s, box-shadow .2s
+        }
+
+        nav a[aria-current] {
+            color: var(--text);
+            box-shadow: 0 2px 0 var(--accent)
+        }
+
+        .js .reveal {
+            opacity: 0;
+            transform: translateY(26px);
+            transition: opacity .7s ease, transform .7s cubic-bezier(.2, .7, .2, 1)
+        }
+
+        .js .reveal.in {
+            opacity: 1;
+            transform: none
+        }
+
+        .js .card.in:hover {
+            transform: translateY(-5px)
+        }
+
+        dialog[open] {
+            animation: pop .3s cubic-bezier(.2, .7, .2, 1)
+        }
+
+        dialog[open]::backdrop {
+            animation: fade .3s ease
+        }
+
+        @keyframes pop {
+            from {
+                opacity: 0;
+                transform: translateY(16px) scale(.97)
+            }
+        }
+
+        @keyframes fade {
+            from {
+                opacity: 0
+            }
+        }
+
+        @media (min-width:760px) {
+            .grid {
+                grid-template-columns: 1fr 1fr
+            }
+
+            .split {
+                grid-template-columns: 1fr 1fr
+            }
+        }
+
+        @media (max-width:620px) {
+            nav ul {
+                gap: .9rem
+            }
+
+            nav a {
+                font-size: .88rem
+            }
+
+            .logo {
+                display: none
+            }
+        }
+
+
+        /* ══════════════════════════════════════════════
+           BACKGROUND VFX
+           ══════════════════════════════════════════════ */
+
+        /* Full-page WebGL canvas behind everything */
+        #vfx-canvas {
+            position: fixed;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -10;
+            pointer-events: none;
+        }
+
+        /* Scanline overlay for CRT depth */
+        body::after {
+            content: "";
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            pointer-events: none;
+            background: repeating-linear-gradient(
+                to bottom,
+                transparent 0px,
+                transparent 3px,
+                rgba(0,0,0,.04) 3px,
+                rgba(0,0,0,.04) 4px
+            );
+        }
+
+        /* Vignette around the edges */
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            z-index: 9998;
+            pointer-events: none;
+            background: radial-gradient(ellipse 100% 100% at 50% 50%,
+                transparent 55%, rgba(0,0,0,.55) 100%);
+        }
+
+        /* Hero: replace flat grid with canvas-ready transparent bg */
+        .gridbg { display: none; }
+
+        /* Floating orbs that drift across the whole page */
+        .orb {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0;
+            pointer-events: none;
+            z-index: -9;
+            animation: orbDrift linear infinite;
+        }
+        @keyframes orbDrift {
+            0%   { opacity: 0; transform: translate(0, 0) scale(1); }
+            10%  { opacity: 1; }
+            90%  { opacity: .8; }
+            100% { opacity: 0; transform: translate(var(--dx), var(--dy)) scale(1.3); }
+        }
+        @media (prefers-reduced-motion:reduce) {
+            html {
+                scroll-behavior: auto
+            }
+
+            *,
+            *::before,
+            *::after {
+                animation: none !important;
+                transition: none !important
+            }
+
+            .js .reveal {
+                opacity: 1;
+                transform: none
+            }
+
+            .hero-name .char {
+                animation: none !important;
+                opacity: 1 !important;
+                transform: none !important
+            }
+
+            .hero-name {
+                animation: none !important;
+                text-shadow: none !important
+            }
+            .orb { animation: none !important; opacity: 0 !important; }
+        }
+    </style>
+    <script>document.documentElement.classList.add("js")</script>
+</head>
+
+<body>
+    <canvas id="vfx-canvas" aria-hidden="true"></canvas>
+    <a class="skip" href="#main">Skip to content</a>
+    <div class="progress" aria-hidden="true"></div>
+    <header class="bar">
+        <div class="wrap">
+            <a class="logo" href="#top">Aditya Raj</a>
+            <nav aria-label="Main">
+                <ul>
+                    <li><a href="#work">Work</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main id="main">
+        <section class="hero" id="top">
+            <div class="gridbg" aria-hidden="true"></div>
+            <div class="wrap">
+                <p class="pill"><i></i>Open to internships and early-career roles</p>
+                <p class="hero-name" aria-label="Aditya Raj"></p>
+                <h1>I build AI products that <em>say “not found”</em> instead of guessing.</h1>
+                <p class="lead">I’m a Computer Science student and full-stack engineer who ships AI assistants and
+                    database-backed apps that hold up under real use. I focus on correctness: cited answers,
+                    conflict-free bookings and tests that prove it.</p>
+                <div class="actions">
+                    <a class="btn primary" href="#work">View work</a>
+                    <a class="btn ghost" href="#contact">Get in touch</a>
+                </div>
+                <ul class="links" aria-label="Quick links">
+                    <li><a href="#" aria-label="GitHub profile">GitHub</a> <small>[DRAFT: add URL]</small></li>
+                    <li><a href="#" aria-label="LinkedIn profile">LinkedIn</a> <small>[DRAFT: add URL]</small></li>
+                    <li><a href="mailto:rajaditya9205@gmail.com">rajaditya9205@gmail.com</a></li>
+                </ul>
+                <div class="demo" aria-label="Example of the policy assistant behaviour">
+                    <p class="q">Does this policy cover rental car damage?</p>
+                    <p class="a">Not found. The policy does not mention it.</p>
+                    <small>From my Insurance Policy Q&amp;A project: 6 of 7 unanswerable test questions were
+                        refused.</small>
+                </div>
+            </div>
+        </section>
+
+        <section id="work">
+            <div class="wrap">
+                <h2>Selected work</h2>
+                <div class="grid" id="cards"></div>
+            </div>
+        </section>
+
+        <section id="about">
+            <div class="wrap">
+                <h2>About and skills</h2>
+                <div class="split">
+                    <div>
+                        <p>I’m a B.Tech student in Computer Science Engineering at Vellore Institute of Technology,
+                            Bhopal (2023–2027), with a CGPA of 8.89/10. I like problems where wrong answers are
+                            expensive, like policies, bookings and leave balances, and I build with that in mind.</p>
+                        <h3>How I work</h3>
+                        <ul class="plain" style="margin-top:1rem">
+                            <li><strong>Write the spec first.</strong> I draft the design before the code, as I did for
+                                HarvestHero.</li>
+                            <li><strong>Enforce rules in the database.</strong> Constraints and transactions beat hoping
+                                the UI behaves.</li>
+                            <li><strong>Measure the AI.</strong> I test against hand-labelled questions and document
+                                where it fails.</li>
+                            <li><strong>Lead clearly.</strong> As Event Management Lead for iCREATE Club, I led 15+
+                                associates and reported status and risks to university stakeholders.</li>
+                        </ul>
+                        <h3>Certifications</h3>
+                        <ul class="plain" style="margin-top:1rem">
+                            <li>Agentic AI Certified Foundations Associate, Oracle</li>
+                            <li>Top 5% in NPTEL Marketing Analytics</li>
+                            <li>System Administrator virtual internship, ServiceNow</li>
+                        </ul>
+                    </div>
+                    <dl class="skills" style="margin:0">
+                        <dt style="margin-top:0">Languages</dt>
+                        <dd>
+                            <ul class="tags">
+                                <li>Python</li>
+                                <li>JavaScript</li>
+                                <li>TypeScript</li>
+                                <li>SQL</li>
+                                <li>Java</li>
+                                <li>C++</li>
+                            </ul>
+                        </dd>
+                        <dt>Web and backend</dt>
+                        <dd>
+                            <ul class="tags">
+                                <li>React</li>
+                                <li>FastAPI</li>
+                                <li>Django REST</li>
+                                <li>REST API design</li>
+                                <li>JWT / RBAC</li>
+                                <li>HTML5 / CSS3</li>
+                            </ul>
+                        </dd>
+                        <dt>Databases</dt>
+                        <dd>
+                            <ul class="tags">
+                                <li>PostgreSQL</li>
+                                <li>SQLite</li>
+                                <li>Supabase</li>
+                                <li>ChromaDB</li>
+                            </ul>
+                        </dd>
+                        <dt>AI</dt>
+                        <dd>
+                            <ul class="tags">
+                                <li>LLM APIs</li>
+                                <li>RAG</li>
+                                <li>Embeddings and semantic search</li>
+                                <li>Prompt engineering</li>
+                                <li>LLM output evaluation</li>
+                            </ul>
+                        </dd>
+                        <dt>Tools</dt>
+                        <dd>
+                            <ul class="tags">
+                                <li>Git</li>
+                                <li>Docker</li>
+                                <li>GitHub Actions</li>
+                                <li>pytest</li>
+                                <li>Pandas</li>
+                                <li>Matplotlib</li>
+                            </ul>
+                        </dd>
+                    </dl>
+                </div>
+            </div>
+        </section>
+
+        <section class="contact" id="contact">
+            <div class="wrap">
+                <h2>Let’s talk about your product</h2>
+                <p>Hiring for an engineering role or building something early-stage? Send a short note and I’ll reply by
+                    email.</p>
+                <p><a href="mailto:rajaditya9205@gmail.com">rajaditya9205@gmail.com</a> &nbsp;|&nbsp; <a
+                        href="tel:+919336786323">+91 93367 86323</a></p>
+                <form id="f">
+                    <label>Your name<input name="name" required autocomplete="name"></label>
+                    <label>Your email<input name="email" type="email" required autocomplete="email"></label>
+                    <label>What are you building or hiring for?<textarea name="msg" required></textarea></label>
+                    <button class="btn primary" type="submit">Open email draft</button>
+                    <p class="note" id="status" role="status">This opens your email app with the message filled in.</p>
+                </form>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <div class="wrap">© 2026 Aditya Raj</div>
+    </footer>
+
+    <dialog id="dlg" aria-labelledby="dt"><button class="close" id="x" aria-label="Close case study">Close</button>
+        <div id="dc"></div>
+    </dialog>
+
+    <script>
+        const P = [
+            {
+                t: "Insurance Policy Q&A Assistant", r: "Designer and developer", s: "A RAG assistant that answers plain-English questions about insurance policy PDFs, with page citations.", m: "22 of 27 test questions fully correct", tags: ["Python", "FastAPI", "ChromaDB", "Sentence-Transformers", "Groq API", "Streamlit"],
+                prob: "Policy PDFs are long and dense, and a confident wrong answer about coverage is costly.",
+                sol: "I built the full pipeline: page-level PDF parsing with PyMuPDF, chunking with page metadata, ChromaDB embeddings, top-k retrieval and a prompt-engineered LLM call, exposed through FastAPI ingestion and query endpoints. A retrieval-distance threshold makes it answer “not found” when the policy is silent.",
+                out: ["22 of 27 hand-labelled questions answered fully correctly", "6 of 7 unanswerable questions correctly refused", "Known failures documented: multi-page reasoning and table extraction"],
+                links: ["Live demo", "GitHub"]
+            },
+            {
+                t: "LeaveDesk: HR leave management", r: "Full-stack developer", s: "A leave platform for employees, managers and HR, with an AI assistant that cites handbook clauses.", m: "Double-booked leave blocked at the database level", tags: ["React 19", "TypeScript", "FastAPI", "PostgreSQL", "JWT", "Docker"],
+                prob: "Leave systems break when two requests overlap or balances drift out of sync.",
+                sol: "A React and FastAPI app on PostgreSQL with JWT authentication and role-based access. A GiST exclusion constraint rejects overlapping leave (HTTP 409), and transactions with row locking (SELECT … FOR UPDATE) keep balances consistent, with an audit log written in the same transaction. A RAG assistant answers with clause-level citations.",
+                out: ["Overlapping leave returns HTTP 409, enforced by the database", "13-test pytest suite covering overlap, atomic balances, RBAC and RAG", "Containerised with Docker Compose; front end deployed on Vercel"],
+                links: ["Live demo", "GitHub"]
+            },
+            {
+                t: "ReserveNest: booking and scheduling", r: "Full-stack developer", s: "A booking web app where conflicting reservations cannot be created.", m: "Conflicts prevented by database constraints", tags: ["JavaScript", "Supabase", "PostgreSQL", "SQL", "HTML5", "CSS3"],
+                prob: "Booking apps that check conflicts only in the front end allow double bookings.",
+                sol: "I designed the PostgreSQL schema on Supabase with database-level constraints, then added authentication and role-based access control and tested across user roles.",
+                out: ["Conflicting bookings rejected at the database level", "Role-based access tested across user roles", "[DRAFT: add usage or performance metric if available]"],
+                links: ["Project link"]
+            },
+            {
+                t: "Chemical Equipment Parameter Visualizer", r: "Backend and data developer", s: "Django REST APIs and a Pandas layer that validate and chart equipment data for web and desktop clients.", m: "One API serving React and PyQt5 clients", tags: ["Python", "Django REST", "Pandas", "Matplotlib", "SQLite", "React", "PyQt5"],
+                prob: "Equipment data needs validating and charting consistently across more than one client.",
+                sol: "I built Django REST APIs and a Pandas layer to validate and chart the data, served to React and PyQt5 clients, with SQLite integrity-check scripts and end-to-end API tests.",
+                out: ["Shared API for a web client and a desktop client", "SQLite integrity-check scripts", "End-to-end API tests", "[DRAFT: add dataset size or accuracy metric]"],
+                links: ["Project link"]
+            }];
+        const cards = document.getElementById("cards"), dlg = document.getElementById("dlg"), dc = document.getElementById("dc");
+        const esc = s => s.replace(/&/g, "&amp;").replace(/</g, "&lt;");
+        let last = null;
+        P.forEach((p, i) => {
+            const a = document.createElement("article"); a.className = "card";
+            a.innerHTML = `<h3>${esc(p.t)}</h3><p class="role">${esc(p.r)}</p><p>${esc(p.s)}</p><p class="metric">${esc(p.m)}</p><ul class="tags">${p.tags.map(x => `<li>${esc(x)}</li>`).join("")}</ul><button class="btn ghost" data-i="${i}" aria-haspopup="dialog">Read case study</button>`;
+            cards.appendChild(a)
+        });
+        cards.addEventListener("click", e => {
+            const b = e.target.closest("button[data-i]"); if (!b) return; last = b; const p = P[b.dataset.i];
+            dc.innerHTML = `<h3 id="dt">${esc(p.t)}</h3><p class="role" style="color:var(--muted)">${esc(p.r)}</p><h4>Problem</h4><p>${esc(p.prob)}</p><h4>Solution</h4><p>${esc(p.sol)}</p><h4>Outcomes</h4><ul class="plain">${p.out.map(o => `<li>${esc(o)}</li>`).join("")}</ul><h4>Stack</h4><ul class="tags">${p.tags.map(x => `<li>${esc(x)}</li>`).join("")}</ul><h4>Links</h4><p>${p.links.map(l => esc(l)).join(", ")} <small>[DRAFT: add URLs]</small></p>`;
+            dlg.showModal()
+        });
+        document.getElementById("x").onclick = () => dlg.close();
+        dlg.addEventListener("click", e => { if (e.target === dlg) dlg.close() });
+        dlg.addEventListener("close", () => last && last.focus());
+        document.getElementById("f").addEventListener("submit", e => {
+            e.preventDefault(); const d = new FormData(e.target);
+            const body = `${d.get("msg")}\n\n${d.get("name")} (${d.get("email")})`;
+            location.href = "mailto:rajaditya9205@gmail.com?subject=" + encodeURIComponent("Portfolio inquiry from " + d.get("name")) + "&body=" + encodeURIComponent(body);
+            document.getElementById("status").textContent = "Your email app should open with the message ready to send."
+        });
+        // ── Animated name: split into per-character spans ──
+        const heroName = document.querySelector('.hero-name');
+        if (heroName) {
+            const name = 'Aditya Raj';
+            heroName.innerHTML = name.split('').map(function (ch, i) {
+                if (ch === ' ') return '<span style="display:inline-block;width:.35em">&nbsp;</span>';
+                return '<span class="char" style="animation-delay:' + (0.05 + i * 0.07).toFixed(2) + 's">' + ch + '</span>';
+            }).join('');
+        }
+        const rm = matchMedia("(prefers-reduced-motion:reduce)").matches;
+        const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target) } }), { threshold: .12 });
+        document.querySelectorAll("section:not(.hero) h2,.card,.split>*,#f").forEach((el, i) => { el.classList.add("reveal"); if (el.classList.contains("card")) el.style.transitionDelay = (i % 2) * 90 + "ms"; io.observe(el) });
+        cards.addEventListener("pointermove", e => { const c = e.target.closest(".card"); if (!c) return; const r = c.getBoundingClientRect(); c.style.setProperty("--mx", e.clientX - r.left + "px"); c.style.setProperty("--my", e.clientY - r.top + "px") });
+        const pg = document.querySelector(".progress");
+        const upd = () => { const m = document.documentElement.scrollHeight - innerHeight; pg.style.transform = "scaleX(" + (m > 0 ? scrollY / m : 0) + ")" };
+        addEventListener("scroll", upd, { passive: true }); upd();
+        const nl = [...document.querySelectorAll("nav a")];
+        const so = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) nl.forEach(a => { if (a.getAttribute("href") === "#" + e.target.id) a.setAttribute("aria-current", "true"); else a.removeAttribute("aria-current") }) }), { rootMargin: "-45% 0px -50% 0px" });
+        ["work", "about", "contact"].forEach(id => so.observe(document.getElementById(id)));
+        if (!rm) {
+            const q = document.querySelector(".demo .q"), a = document.querySelector(".demo .a"), qt = q.textContent, at = a.textContent; q.textContent = ""; a.textContent = "";
+            const type = (el, t, d) => new Promise(r => { let i = 0; el.classList.add("typing"); const id = setInterval(() => { el.textContent = t.slice(0, ++i); if (i >= t.length) { clearInterval(id); el.classList.remove("typing"); r() } }, d) });
+            setTimeout(async () => { await type(q, qt, 28); await new Promise(r => setTimeout(r, 450)); await type(a, at, 22) }, 1000)
+        }
+    </script>
+
+<script>
+/* ═══════════════════════════════════════════════════════════════
+   BACKGROUND VFX ENGINE
+   – WebGL particle field + flowing aurora streaks
+   – CSS floating orbs
+   ═══════════════════════════════════════════════════════════════ */
+(function() {
+  if (matchMedia('(prefers-reduced-motion:reduce)').matches) return;
+
+  /* ── Colour palette from CSS vars ── */
+  const accent = [255, 178, 31];   // --accent #ffb21f
+  const cyan   = [0,   220, 255];
+  const purple = [160, 80,  255];
+  const teal   = [0,   200, 180];
+
+  /* ════════════════════════════════════
+     1. FLOATING ORB SPAWNER (CSS)
+     ════════════════════════════════════ */
+  const orbColors = [
+    'rgba(255,178,31,.35)',
+    'rgba(0,220,255,.22)',
+    'rgba(160,80,255,.28)',
+    'rgba(0,200,180,.20)',
+    'rgba(255,80,80,.18)',
+  ];
+  function spawnOrb() {
+    const el = document.createElement('div');
+    el.className = 'orb';
+    const size  = 180 + Math.random() * 320;
+    const startX = Math.random() * 100;
+    const startY = Math.random() * 100;
+    const dx = (Math.random() - .5) * 40;
+    const dy = (Math.random() - .5) * 40;
+    const dur = 12 + Math.random() * 20;
+    el.style.cssText = [
+      'width:' + size + 'px',
+      'height:' + size + 'px',
+      'left:' + startX + 'vw',
+      'top:' + startY + 'vh',
+      'background:' + orbColors[Math.floor(Math.random() * orbColors.length)],
+      '--dx:' + dx + 'vw',
+      '--dy:' + dy + 'vh',
+      'animation-duration:' + dur + 's',
+      'animation-delay:' + (Math.random() * -dur) + 's',
+    ].join(';');
+    document.body.appendChild(el);
+    el.addEventListener('animationiteration', function() {
+      // randomise again on each loop
+      el.style.left = Math.random() * 100 + 'vw';
+      el.style.top  = Math.random() * 100 + 'vh';
+    });
+  }
+  for (var o = 0; o < 7; o++) spawnOrb();
+
+  /* ════════════════════════════════════
+     2. WEBGL PARTICLE + AURORA CANVAS
+     ════════════════════════════════════ */
+  var canvas = document.getElementById('vfx-canvas');
+  var gl = canvas.getContext('webgl', { alpha: true, premultipliedAlpha: false });
+  if (!gl) return; // graceful fallback
+
+  /* ── Resize ── */
+  function resize() {
+    canvas.width  = window.innerWidth;
+    canvas.height = window.innerHeight;
+    gl.viewport(0, 0, canvas.width, canvas.height);
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  /* ── Particle vertex shader ── */
+  var partVS = [
+    'attribute vec2 a_pos;',
+    'attribute float a_size;',
+    'attribute vec4 a_col;',
+    'varying vec4 v_col;',
+    'void main() {',
+    '  gl_Position = vec4(a_pos, 0.0, 1.0);',
+    '  gl_PointSize = a_size;',
+    '  v_col = a_col;',
+    '}'
+  ].join('\n');
+
+  var partFS = [
+    'precision mediump float;',
+    'varying vec4 v_col;',
+    'void main() {',
+    '  float d = length(gl_PointCoord - vec2(0.5));',
+    '  if (d > 0.5) discard;',
+    '  float a = 1.0 - smoothstep(0.3, 0.5, d);',
+    '  gl_FragColor = vec4(v_col.rgb, v_col.a * a);',
+    '}'
+  ].join('\n');
+
+  /* ── Aurora / streak shader ── */
+  var auroraVS = [
+    'attribute vec2 a_pos;',
+    'void main() { gl_Position = vec4(a_pos, 0.0, 1.0); }'
+  ].join('\n');
+
+  var auroraFS = [
+    'precision mediump float;',
+    'uniform float u_time;',
+    'uniform vec2  u_res;',
+    'void main() {',
+    '  vec2 uv = gl_FragCoord.xy / u_res;',
+    '  uv.x += sin(uv.y * 3.0 + u_time * 0.4) * 0.08;',
+    '  uv.y += cos(uv.x * 2.5 + u_time * 0.3) * 0.06;',
+    '  float a1 = sin(uv.x * 4.0 + u_time * 0.5) * 0.5 + 0.5;',
+    '  float a2 = sin(uv.y * 3.0 - u_time * 0.35) * 0.5 + 0.5;',
+    '  float a3 = sin((uv.x + uv.y) * 2.5 + u_time * 0.6) * 0.5 + 0.5;',
+    '  float band = smoothstep(0.3, 0.7, sin(uv.y * 5.0 + u_time * 0.2));',
+    '  vec3 c1 = vec3(1.0, 0.70, 0.12);', // amber
+    '  vec3 c2 = vec3(0.0, 0.86, 1.0);',  // cyan
+    '  vec3 c3 = vec3(0.63, 0.31, 1.0);', // purple
+    '  vec3 col = mix(c1, c2, a1);',
+    '  col = mix(col, c3, a2 * 0.6);',
+    '  float alpha = band * a3 * 0.09;',  // very subtle
+    '  gl_FragColor = vec4(col * alpha, alpha);',
+    '}'
+  ].join('\n');
+
+  function mkShader(type, src) {
+    var s = gl.createShader(type);
+    gl.shaderSource(s, src);
+    gl.compileShader(s);
+    return s;
+  }
+  function mkProg(vs, fs) {
+    var p = gl.createProgram();
+    gl.attachShader(p, mkShader(gl.VERTEX_SHADER, vs));
+    gl.attachShader(p, mkShader(gl.FRAGMENT_SHADER, fs));
+    gl.linkProgram(p);
+    return p;
+  }
+
+  var partProg   = mkProg(partVS, partFS);
+  var auroraProg = mkProg(auroraVS, auroraFS);
+
+  /* ── Full-screen quad for aurora ── */
+  var quadBuf = gl.createBuffer();
+  gl.bindBuffer(gl.ARRAY_BUFFER, quadBuf);
+  gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1,-1, 1,-1, -1,1, 1,1]), gl.STATIC_DRAW);
+
+  /* ── Particles ── */
+  var N = 220;
+  var POS  = new Float32Array(N * 2);
+  var VEL  = new Float32Array(N * 2);
+  var SIZE = new Float32Array(N);
+  var COL  = new Float32Array(N * 4);
+  var AGE  = new Float32Array(N);
+  var LIFE = new Float32Array(N);
+
+  var palettes = [
+    [1.0, 0.70, 0.12, 1.0],
+    [0.0, 0.86, 1.0,  1.0],
+    [0.63,0.31, 1.0,  1.0],
+    [0.0, 0.78, 0.71, 1.0],
+    [1.0, 0.95, 0.60, 1.0],
+  ];
+
+  function resetParticle(i) {
+    POS[i*2]   = (Math.random() * 2 - 1);
+    POS[i*2+1] = (Math.random() * 2 - 1);
+    var spd = 0.00008 + Math.random() * 0.00018;
+    var ang = Math.random() * Math.PI * 2;
+    VEL[i*2]   = Math.cos(ang) * spd;
+    VEL[i*2+1] = Math.sin(ang) * spd;
+    SIZE[i]    = 1.5 + Math.random() * 3.5;
+    var c = palettes[Math.floor(Math.random() * palettes.length)];
+    COL[i*4]   = c[0]; COL[i*4+1] = c[1];
+    COL[i*4+2] = c[2]; COL[i*4+3] = 0;
+    LIFE[i]    = 80 + Math.random() * 160;
+    AGE[i]     = Math.random() * LIFE[i];
+  }
+  for (var i = 0; i < N; i++) resetParticle(i);
+
+  var posBuf  = gl.createBuffer();
+  var sizeBuf = gl.createBuffer();
+  var colBuf  = gl.createBuffer();
+
+  /* ── Mouse repulsion ── */
+  var mx = 9999, my = 9999;
+  window.addEventListener('mousemove', function(e) {
+    mx = (e.clientX / window.innerWidth)  *  2 - 1;
+    my = (e.clientY / window.innerHeight) * -2 + 1;
+  });
+
+  gl.enable(gl.BLEND);
+  gl.blendFunc(gl.SRC_ALPHA, gl.ONE);
+
+  var t0 = performance.now();
+
+  function frame(ts) {
+    requestAnimationFrame(frame);
+    var t = (ts - t0) * 0.001;
+
+    gl.clearColor(0, 0, 0, 0);
+    gl.clear(gl.COLOR_BUFFER_BIT);
+
+    /* ── Draw aurora ── */
+    gl.blendFunc(gl.SRC_ALPHA, gl.ONE);
+    gl.useProgram(auroraProg);
+    gl.bindBuffer(gl.ARRAY_BUFFER, quadBuf);
+    var ap = gl.getAttribLocation(auroraProg, 'a_pos');
+    gl.enableVertexAttribArray(ap);
+    gl.vertexAttribPointer(ap, 2, gl.FLOAT, false, 0, 0);
+    gl.uniform1f(gl.getUniformLocation(auroraProg, 'u_time'), t);
+    gl.uniform2f(gl.getUniformLocation(auroraProg, 'u_res'), canvas.width, canvas.height);
+    gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+
+    /* ── Update + draw particles ── */
+    gl.blendFunc(gl.SRC_ALPHA, gl.ONE);
+    gl.useProgram(partProg);
+
+    for (var i = 0; i < N; i++) {
+      AGE[i]++;
+      if (AGE[i] > LIFE[i]) { resetParticle(i); AGE[i] = 0; }
+
+      /* Fade in / fade out */
+      var pct = AGE[i] / LIFE[i];
+      var alpha = pct < 0.1 ? pct * 10 : pct > 0.85 ? (1 - pct) / 0.15 : 1;
+      COL[i*4+3] = alpha * 0.75;
+
+      /* Gentle noise drift */
+      VEL[i*2]   += (Math.random() - .5) * 0.000015;
+      VEL[i*2+1] += (Math.random() - .5) * 0.000015;
+
+      /* Mouse repulsion */
+      var dx = POS[i*2] - mx;
+      var dy = POS[i*2+1] - my;
+      var dist2 = dx*dx + dy*dy;
+      if (dist2 < 0.08) {
+        var f = 0.00005 / (dist2 + 0.001);
+        VEL[i*2]   += dx * f;
+        VEL[i*2+1] += dy * f;
+      }
+
+      /* Speed cap */
+      var spd2 = VEL[i*2]*VEL[i*2] + VEL[i*2+1]*VEL[i*2+1];
+      if (spd2 > 0.0004) {
+        var inv = 0.02 / Math.sqrt(spd2);
+        VEL[i*2] *= inv; VEL[i*2+1] *= inv;
+      }
+
+      POS[i*2]   += VEL[i*2];
+      POS[i*2+1] += VEL[i*2+1];
+
+      /* Wrap */
+      if (POS[i*2] >  1.05) POS[i*2] = -1.05;
+      if (POS[i*2] < -1.05) POS[i*2] =  1.05;
+      if (POS[i*2+1] >  1.05) POS[i*2+1] = -1.05;
+      if (POS[i*2+1] < -1.05) POS[i*2+1] =  1.05;
+    }
+
+    gl.bindBuffer(gl.ARRAY_BUFFER, posBuf);
+    gl.bufferData(gl.ARRAY_BUFFER, POS, gl.DYNAMIC_DRAW);
+    var posLoc = gl.getAttribLocation(partProg, 'a_pos');
+    gl.enableVertexAttribArray(posLoc);
+    gl.vertexAttribPointer(posLoc, 2, gl.FLOAT, false, 0, 0);
+
+    gl.bindBuffer(gl.ARRAY_BUFFER, sizeBuf);
+    gl.bufferData(gl.ARRAY_BUFFER, SIZE, gl.DYNAMIC_DRAW);
+    var sizeLoc = gl.getAttribLocation(partProg, 'a_size');
+    gl.enableVertexAttribArray(sizeLoc);
+    gl.vertexAttribPointer(sizeLoc, 1, gl.FLOAT, false, 0, 0);
+
+    gl.bindBuffer(gl.ARRAY_BUFFER, colBuf);
+    gl.bufferData(gl.ARRAY_BUFFER, COL, gl.DYNAMIC_DRAW);
+    var colLoc = gl.getAttribLocation(partProg, 'a_col');
+    gl.enableVertexAttribArray(colLoc);
+    gl.vertexAttribPointer(colLoc, 4, gl.FLOAT, false, 0, 0);
+
+    gl.drawArrays(gl.POINTS, 0, N);
+  }
+
+  requestAnimationFrame(frame);
+})();
+</script>
+</body>
+
+</html>
